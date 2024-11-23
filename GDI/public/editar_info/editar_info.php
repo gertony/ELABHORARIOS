@@ -57,73 +57,81 @@ if (isset($_GET['accion']) && $_GET['accion'] == 'eliminar' && isset($_GET['id']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Información</title>
-    <link rel="stylesheet" href="editar_info.css">
+    <link rel="stylesheet" href="editar_info.css"> <!-- Asegúrate de que la ruta sea correcta -->
     <script>
         // Cambiar el contenido según la opción seleccionada
         function cambiarTabla() {
             var select = document.getElementById('tablaSelect');
             var selectedValue = select.value;
+            if (selectedValue === "") {
+                return; // No redirigir si no se selecciona una tabla
+            }
             window.location.href = '?tabla=' + selectedValue;
         }
     </script>
 </head>
 <body>
 
-    <h1>Selecciona una tabla para ver</h1>
-    <button onclick="window.location.href='../home.php'">Menu Principal</button> <br>
+<h1>Selecciona una tabla para ver</h1>
+<button onclick="window.location.href='../home.php'">Menú Principal</button> <br>
 
-    <!-- Desplegable para seleccionar qué mostrar -->
-    <select id="tablaSelect" onchange="cambiarTabla()">
-        <option value="cursos" <?php echo isset($_GET['tabla']) && $_GET['tabla'] == 'cursos' ? 'selected' : ''; ?>>Cursos</option>
-        <option value="docentes" <?php echo isset($_GET['tabla']) && $_GET['tabla'] == 'docentes' ? 'selected' : ''; ?>>Docentes</option>
-        <option value="aulas" <?php echo isset($_GET['tabla']) && $_GET['tabla'] == 'aulas' ? 'selected' : ''; ?>>Aulas</option>
-    </select>
+<label for="tablaSelect">Elige un grupo:</label>
+<select id="tablaSelect" onchange="cambiarTabla()">
+    <option value="">--Selecciona un grupo--</option>
+    <option value="cursos" <?php echo isset($_GET['tabla']) && $_GET['tabla'] == 'cursos' ? 'selected' : ''; ?>>Cursos</option>
+    <option value="docentes" <?php echo isset($_GET['tabla']) && $_GET['tabla'] == 'docentes' ? 'selected' : ''; ?>>Docentes</option>
+    <option value="aulas" <?php echo isset($_GET['tabla']) && $_GET['tabla'] == 'aulas' ? 'selected' : ''; ?>>Aulas</option>
+</select>
 
+<?php if (isset($_GET['tabla']) && in_array($_GET['tabla'], ['cursos', 'docentes', 'aulas'])): ?>
     <h2>Listado de <?php echo ucfirst($tabla); ?></h2>
     <a href="nuevo_registro.php?tabla=<?php echo $tabla; ?>"><button>Añadir Nuevo</button></a>
 
     <table>
         <thead>
-            <tr>
-                <?php
-                if ($tabla == 'cursos') {
-                    echo "<th>ID</th><th>Grado</th><th>Nombre</th><th>Horas</th><th>Acciones</th>";
-                } elseif ($tabla == 'docentes') {
-                    echo "<th>ID</th><th>Nombre</th><th>Horas Contratado</th><th>Acciones</th>";
-                } elseif ($tabla == 'aulas') {
-                    echo "<th>ID</th><th>Grado</th><th>Sección</th><th>Nivel</th><th>Acciones</th>";
-                }
-                ?>
-            </tr>
-        </thead>
-        <tbody>
+        <tr>
             <?php
-            // Mostrar los datos según la tabla seleccionada
-            foreach ($registros as $item) {
-                echo "<tr>";
-                if ($tabla == 'cursos') {
-                    echo "<td>" . htmlspecialchars($item['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['grado']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['nombre']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['numero_horas']) . "</td>";
-                    echo "<td><a href='editar_registro.php?id=" . $item['id'] . "&tabla=cursos'>Editar</a> | <a href='?tabla=" . $tabla . "&accion=eliminar&id=" . $item['id'] . "' onclick='return confirm(\"¿Estás seguro de eliminar este registro?\")'>Eliminar</a></td>";
-                } elseif ($tabla == 'docentes') {
-                    echo "<td>" . htmlspecialchars($item['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['nombre']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['horas_semanales']) . "</td>";
-                    echo "<td><a href='editar_registro.php?id=" . $item['id'] . "&tabla=docentes'>Editar</a> | <a href='?tabla=" . $tabla . "&accion=eliminar&id=" . $item['id'] . "' onclick='return confirm(\"¿Estás seguro de eliminar este registro?\")'>Eliminar</a></td>";
-                } elseif ($tabla == 'aulas') {
-                    echo "<td>" . htmlspecialchars($item['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['grado']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['seccion']) . "</td>";
-                    echo "<td>" . htmlspecialchars($item['nivel']) . "</td>";
-                    echo "<td><a href='editar_registro.php?id=" . $item['id'] . "&tabla=aulas'>Editar</a> | <a href='?tabla=" . $tabla . "&accion=eliminar&id=" . $item['id'] . "' onclick='return confirm(\"¿Estás seguro de eliminar este registro?\")'>Eliminar</a></td>";
-                }
-                echo "</tr>";
+            if ($tabla == 'cursos') {
+                echo "<th>ID</th><th>Grado</th><th>Nombre</th><th>Horas</th><th>Acciones</th>";
+            } elseif ($tabla == 'docentes') {
+                echo "<th>ID</th><th>Nombre</th><th>Horas Contratado</th><th>Acciones</th>";
+            } elseif ($tabla == 'aulas') {
+                echo "<th>ID</th><th>Ubicación</th><th>Capacidad</th><th>Acciones</th>";
             }
             ?>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        // Mostrar los datos según la tabla seleccionada
+        foreach ($registros as $item) {
+            echo "<tr>";
+            if ($tabla == 'cursos') {
+                echo "<td>" . htmlspecialchars($item['id']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['grado']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['nombre']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['numero_horas']) . "</td>";
+                echo "<td><a href='editar_registro.php?id=" . $item['id'] . "&tabla=cursos'>Editar</a> | <a href='?tabla=" . $tabla . "&accion=eliminar&id=" . $item['id'] . "' onclick='return confirm(\"¿Estás seguro de eliminar este registro?\")'>Eliminar</a></td>";
+            } elseif ($tabla == 'docentes') {
+                echo "<td>" . htmlspecialchars($item['id']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['nombre']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['horas_semanales']) . "</td>";
+                echo "<td><a href='editar_registro.php?id=" . $item['id'] . "&tabla=docentes'>Editar</a> | <a href='?tabla=" . $tabla . "&accion=eliminar&id=" . $item['id'] . "' onclick='return confirm(\"¿Estás seguro de eliminar este registro?\")'>Eliminar</a></td>";
+            } elseif ($tabla == 'aulas') {
+                echo "<td>" . htmlspecialchars($item['id']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['grado']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['seccion']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['nivel']) . "</td>";
+                echo "<td><a href='editar_registro.php?id=" . $item['id'] . "&tabla=aulas'>Editar</a> | <a href='?tabla=" . $tabla . "&accion=eliminar&id=" . $item['id'] . "' onclick='return confirm(\"¿Estás seguro de eliminar este registro?\")'>Eliminar</a></td>";
+            }
+            echo "</tr>";
+        }
+        ?>
         </tbody>
     </table>
+<?php else: ?>
+    <p>No hay información disponible. Por favor, selecciona un grupo para ver los datos.</p>
+<?php endif; ?>
 
 </body>
 </html>
