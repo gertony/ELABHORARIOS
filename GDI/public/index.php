@@ -2,34 +2,25 @@
 // Iniciar sesión
 session_start();
 
-// Verificar si el administrador ya está logueado
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    // Si está logueado, redirigir al home
     header("Location: home.php");
     exit;
 }
 
-// Verificar si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recuperar las credenciales del formulario
-    $username = $_POST['username'];
+    $username = $_POST['username']
     $password = $_POST['password'];
 
-    // Definir usuario y contraseña estáticos (puedes cambiar estos valores)
     $valid_username = 'paolo123';
     $valid_password = 'skibidi';
 
-    // Verificar las credenciales
     if ($username === $valid_username && $password === $valid_password) {
-        // Si las credenciales son correctas, iniciar la sesión
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['username'] = $username;
 
-        // Redirigir al home
         header("Location: home.php");
         exit;
     } else {
-        // Si las credenciales son incorrectas, mostrar un mensaje de error
         $error_message = 'Credenciales incorrectas, por favor intente nuevamente.';
     }
 }
