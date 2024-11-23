@@ -20,7 +20,7 @@ if (isset($_POST['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Gestión de Horarios</title>
-    <link rel="stylesheet" href="public/styles.css">
+    <link rel="stylesheet" href="home.css">
     <script src="public/js/auth.js" defer></script>
 </head>
 <body>

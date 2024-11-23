@@ -34,7 +34,7 @@ if (isset($_GET['tabla'])) {
     }
 }
 
-// Lógica para eliminar un registro
+// Eliminar un registro
 if (isset($_GET['accion']) && $_GET['accion'] == 'eliminar' && isset($_GET['id'])) {
     $id = $_GET['id'];
     if ($tabla == 'cursos') {
@@ -57,7 +57,7 @@ if (isset($_GET['accion']) && $_GET['accion'] == 'eliminar' && isset($_GET['id']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Información</title>
-    <link rel="stylesheet" href="../css/styles.css"> <!-- Asegúrate de que la ruta sea correcta -->
+    <link rel="stylesheet" href="editar_info.css">
     <script>
         // Cambiar el contenido según la opción seleccionada
         function cambiarTabla() {
@@ -91,7 +91,7 @@ if (isset($_GET['accion']) && $_GET['accion'] == 'eliminar' && isset($_GET['id']
                 } elseif ($tabla == 'docentes') {
                     echo "<th>ID</th><th>Nombre</th><th>Horas Contratado</th><th>Acciones</th>";
                 } elseif ($tabla == 'aulas') {
-                    echo "<th>ID</th><th>Ubicación</th><th>Capacidad</th><th>Acciones</th>";
+                    echo "<th>ID</th><th>Grado</th><th>Sección</th><th>Nivel</th><th>Acciones</th>";
                 }
                 ?>
             </tr>

@@ -41,12 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Gestión de Horarios</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="index.css">
     <script src="public/js/auth.js" defer></script>
 </head>
 <body>
     <div class="login-container">
         <h2>Iniciar sesión</h2>
+        <img src="src/logo_1.png" alt="Logo del colegio">
 
         <?php if (isset($error_message)): ?>
             <div id="error-message" class="error-message">

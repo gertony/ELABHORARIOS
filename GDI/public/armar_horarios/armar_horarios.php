@@ -22,7 +22,7 @@ $horas = range(1, 9);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armar Horarios</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="armar_horarios.css">
     <script>
         // Función para cargar cursos dinámicamente según el aula seleccionada
         function cargarCursos() {
@@ -112,7 +112,7 @@ $horas = range(1, 9);
         <?php endforeach; ?>
         </tbody>
     </table>
-    <button type="button" onclick="guardarHorario()">Guardar Horarios</button>
+    <button class="btn-guardar" type="button" onclick="guardarHorario()">Guardar Horarios</button>
     <a href="ver_horarios.php"><button type="button">Volver a Ver Horarios</button></a>
 </form>
 </body>

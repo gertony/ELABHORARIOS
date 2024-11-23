@@ -86,7 +86,7 @@ if (isset($_GET['tabla'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes de Información</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="ver_reportes.css">
     <script>
         function cambiarTabla() {
             const tabla = document.getElementById('tablaSelect').value;

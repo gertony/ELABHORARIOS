@@ -33,7 +33,7 @@ if (isset($_GET['aula'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horarios Creados</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="ver_horarios.css">
     <script>
         function mostrarHorarios() {
             const aula = document.getElementById('aula').value;
@@ -91,12 +91,13 @@ if (isset($_GET['aula'])) {
         <?php endforeach; ?>
         </tbody>
     </table>
-    <button onclick="window.location.href='armar_horarios.php'">Armar Horarios</button>
+    <div class="botones-acciones">
+        <button class="btn-armarhorarios" onclick="window.location.href='armar_horarios.php'">Armar Horarios</button>
 
-    <button onclick="window.location.href='exportar_pdf.php?aula=<?php echo $aulaSeleccionada; ?>'">Exportar a PDF</button>
+        <button class="btn-exportarpdf" onclick="window.location.href='exportar_pdf.php?aula=<?php echo $aulaSeleccionada; ?>'">Exportar a PDF</button>
 
-    <button onclick="if(confirm('¿Estás seguro de que deseas eliminar todos los horarios de esta aula?')) { window.location.href = 'eliminar_horarios.php?aula=<?php echo $aulaSeleccionada; ?>'; }">Reiniciar Horario</button>
-
+        <button class="btn-reiniciarhorarios" onclick="if(confirm('¿Estás seguro de que deseas eliminar todos los horarios de esta aula?')) { window.location.href = 'eliminar_horarios.php?aula=<?php echo $aulaSeleccionada; ?>'; }">Reiniciar Horario</button>
+    </div>
 
 <?php endif; ?>
 

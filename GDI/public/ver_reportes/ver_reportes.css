@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1b263b;
+    color: #e0e1dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Títulos principales */
+h1 {
+    font-size: 28px;
+    color: #f4a261;
+    text-shadow: 2px 2px #3d5a80;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #fff4eb;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 1px 1px #3d5a80;
+}
+
+/* Botón para volver al menú principal */
+button {
+    padding: 12px 20px;
+    background-color: #3d5a80;
+    color: #e0e1dd;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #f4a261;
+    transform: translateY(-2px);
+    text-shadow: 1px 1px #1b263b;
+}
+
+/* Etiquetas y selects */
+label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #e0e1dd;
+    display: block;
+}
+
+select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #3d5a80;
+    border-radius: 5px;
+    background-color: #3d5a80;
+    color: #e0e1dd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+select:focus {
+    border-color: #f4a261;
+    box-shadow: 0 0 8px rgba(244, 162, 97, 0.8);
+    outline: none;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #778da9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #3d5a80;
+}
+
+th {
+    background: linear-gradient(#3d5a80, #26374e);
+    color: #e0e1dd;
+    font-size: 18px;
+    text-align: center;
+    text-shadow: 1px 1px #1b263b;
+}
+
+td {
+    text-align: center;
+    font-style: italic;
+    font-size: 16px;
+    color: #e0e1dd;
+}
+
+/* Tabla vacía */
+p {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #eeeeee;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    h1, h2 {
+        font-size: 22px;
+    }
+
+    select {
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}

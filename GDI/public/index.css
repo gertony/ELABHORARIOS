@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo y Flexbox para centrar todo */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1b263b; 
+    font-family: 'Courier New', Courier, monospace;
+    color: #e0e1dd; 
+}
+
+/* Estilos de contenedor de login */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: #778da9; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Logo */
+.login-container img {
+    width: 120px;
+    margin-bottom: 20px;
+    filter: brightness(0.9); 
+}
+
+/* Título */
+h2 {
+    text-align: center;
+    color: #f4a261; 
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #3d5a80;
+}
+
+/* Estilo de las etiquetas */
+label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #e0e1dd;
+    display: block;
+}
+
+/* Estilo de los inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #3d5a80;
+    border-radius: 5px;
+    background-color: #f0f4ef; 
+    color: #1b263b; 
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Enfoque en inputs */
+input:focus {
+    border-color: #f4a261; 
+    box-shadow: 0px 0px 8px rgba(244, 162, 97, 0.8); 
+    outline: none;
+}
+
+/* Botón de ingreso */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3d5a80; 
+    color: #e0e1dd; 
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover en botón */
+button:hover {
+    background-color: #f4a261; 
+    transform: scale(1.05); 
+}
+
+/* Estilo de mensaje de error */
+.error-message {
+    background-color: #e63946;
+    color: #f1faee;
+    border: 1px solid #f4a261;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    text-shadow: 1px 1px #1b263b;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
