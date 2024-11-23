@@ -9,19 +9,16 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit();
 }
 
-// Variables para almacenar datos
 $tabla = null;
 $reporte = null;
 $registros = [];
 
-// Procesar selección de tablas y reportes
 if (isset($_GET['tabla'])) {
     $tabla = $_GET['tabla'];
 
     if ($tabla == 'registros' && isset($_GET['reporte'])) {
         $reporte = $_GET['reporte'];
 
-        // Reporte para Registros
         if ($reporte == 'listado') {
             $query = $pdo->prepare("
                 SELECT c.id AS carga_id, c.id_curso, c.id_docente, d.nombre AS docente_nombre, c.seccion
@@ -38,14 +35,12 @@ if (isset($_GET['tabla'])) {
             $query = $pdo->prepare("
                 SELECT h.id_aula, h.hora_educativa, h.dia_semana, h.id_curso
                 FROM horarios h
-                WHERE h.id_aula = '1A'
-                ORDER BY h.dia_semana, h.hora_educativa
+                ORDER BY h.id_aula,h.dia_semana, h.hora_educativa
             ");
         } elseif ($reporte == 'carga_dia') {
             $query = $pdo->prepare("
                 SELECT h.id_aula, h.dia_semana, COUNT(h.hora_educativa) AS total_horas
                 FROM horarios h
-                WHERE h.id_aula = '1A'
                 GROUP BY h.id_aula, h.dia_semana
                 ORDER BY h.dia_semana
             ");
@@ -59,8 +54,7 @@ if (isset($_GET['tabla'])) {
                 SELECT DISTINCT h.id_curso, c.nombre AS curso_nombre, h.dia_semana
                 FROM horarios h
                 JOIN cursos c ON h.id_curso = c.id
-                WHERE h.dia_semana = 'Lun'
-                ORDER BY c.nombre
+                ORDER BY h.dia_semana,c.nombre
             ");
         }
     } elseif ($tabla == 'docentes' && isset($_GET['reporte'])) {
@@ -79,7 +73,6 @@ if (isset($_GET['tabla'])) {
         }
     }
 
-    // Ejecución de la consulta y obtención de registros
     if (isset($query)) {
         $query->execute();
         $registros = $query->fetchAll(PDO::FETCH_ASSOC);
